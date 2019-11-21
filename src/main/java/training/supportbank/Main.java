@@ -24,6 +24,8 @@ public class Main {
         return lines;
     }
 
+    static  transactionFromLine(String line) {
 
+    }
 
 }
