@@ -1,19 +1,27 @@
 package training.supportbank;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+
 public class Main {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static void main(String args[]) {
-        Account[] accounts = [];
+        LOGGER.log(Level.INFO, "Program started");
+        AccountsBook accounts = new AccountsBook();
         Stream<Transaction> transactionStream = Stream.empty();
         transactionStream = readFile()
                 .skip(1)
                 .map(line -> transactionFromLine(line));
-        transactionStream.forEach(transaction -> ProcessTransaction(accounts, transaction));
+//        transactionStream.forEach(transaction -> accounts.ProcessTransaction(transaction));
     }
 
     private static Stream<String> readFile()  {
