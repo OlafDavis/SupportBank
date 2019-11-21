@@ -9,13 +9,13 @@ public class Transaction {
         this.toName = to;
         this.amountPence = amount;
     }
-    public String From() {
+    public String GetFrom() {
         return this.fromName;
     }
-    public String To() {
+    public String GetTo() {
         return this.toName;
     }
-    public Integer AmountPence() {
+    public Integer GetAmountPence() {
         return this.amountPence;
     }
 }

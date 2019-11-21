@@ -8,12 +8,15 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String args[]) {
-        // Your code here!
-        System.out.println("Test!!");
-        Stream<String> lines = readFile();
+        Account[] accounts = [];
+        Stream<Transaction> transactionStream = Stream.empty();
+        transactionStream = readFile()
+                .skip(1)
+                .map(line -> transactionFromLine(line));
+        transactionStream.forEach(transaction -> ProcessTransaction(accounts, transaction));
     }
 
-    static Stream<String> readFile()  {
+    private static Stream<String> readFile()  {
         Stream<String> lines = Stream.empty();
         Path path = Paths.get("Transactions2014.csv");
         try {
@@ -24,8 +27,9 @@ public class Main {
         return lines;
     }
 
-    static  transactionFromLine(String line) {
-
+    private static Transaction transactionFromLine(String line) {
+        String[] items = line.split(",");
+        return new Transaction(items[1],items[2],Integer.getInteger(items[4]));
     }
 
 }

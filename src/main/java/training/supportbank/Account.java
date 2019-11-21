@@ -7,13 +7,13 @@ class Account {
         this.name = name;
         this.balancePence = balance;
     }
-    public AddBalance(Integer increase) {
+    public void AddBalance(Integer increase) {
         this.balancePence += increase;
     }
-    public Integer Balance() {
+    public Integer GetBalance() {
         return this.balancePence;
     }
-    public String Name() {
+    public String GetName() {
         return this.name;
     }
 }
