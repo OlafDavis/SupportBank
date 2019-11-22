@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -40,20 +39,9 @@ public class Main {
     }
 
     private static Stream<String> streamFromFiles() {
-        return Stream.concat(readFile("Transactions2014.csv").skip(1),
-                readFile("DodgyTransactions2015.csv").skip(1));
-    }
-
-    private static Stream<String> readFile(String filename)  {
-        Stream<String> lines = Stream.empty();
-        LOGGER.log(Level.INFO,"reading file " + filename);
-        Path path = Paths.get(filename);
-        try {
-            lines = Files.lines(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return lines;
+        FileReader firstReader = new CSVReader("Transactions2014.csv");
+        FileReader secondReader = new CSVReader("DodgyTransactions2015.csv");
+        return Stream.concat(firstReader.getTextStream(), secondReader.getTextStream());
     }
 
     private static Transaction transactionFromLine(String line) {
